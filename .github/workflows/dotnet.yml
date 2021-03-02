@@ -21,7 +21,6 @@ jobs:
             username: ${{ secrets.REGISTRY_USERNAME }}
             password: ${{ secrets.REGISTRY_PASSWORD }}
         - run: |
-            dotnet nuget add source https://nuget.pkg.github.com/logicart-software/index.json --name logicart --username logicart-software --password 422a7ec8b4c6186bd744127873864a62ef2e413c --store-password-in-clear-text
             docker build . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/site-mercado:${{ github.sha }}
             docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/site-mercado:${{ github.sha }}
 
