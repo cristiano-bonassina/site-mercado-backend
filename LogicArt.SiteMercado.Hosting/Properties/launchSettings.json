@@ -1,0 +1,15 @@
+{
+  "profiles": {
+    "LogicArt.SiteMercado.Infrastructure.Hosting": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "DATABASE_URL": "Server=tcp:site-mercado.database.windows.net,1433;Initial Catalog=site-mercado;Persist Security Info=False;User ID=cristiano;Password=Cris@2747;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;",
+        "ASPNETCORE_URLS": "http://localhost:5000",
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    },
+    "Docker": {
+      "commandName": "Docker"
+    }
+  }
+}
