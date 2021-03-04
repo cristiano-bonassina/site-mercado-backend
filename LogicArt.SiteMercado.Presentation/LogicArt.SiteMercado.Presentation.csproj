@@ -32,6 +32,7 @@
     <ProjectReference Include="..\LogicArt.SiteMercado.Infrastructure.Persistence\LogicArt.SiteMercado.Infrastructure.Persistence.csproj" />
     <ProjectReference Include="..\LogicArt.SiteMercado.Application.Assemblers\LogicArt.SiteMercado.Application.Adapters.csproj" />
     <ProjectReference Include="..\LogicArt.SiteMercado.Application.Data\LogicArt.SiteMercado.Application.Data.csproj" />
+    <ProjectReference Include="..\LogicArt.SiteMercado.Infrastructure\LogicArt.SiteMercado.Infrastructure.csproj" />
   </ItemGroup>
 
   <ItemGroup>

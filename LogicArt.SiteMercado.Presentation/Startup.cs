@@ -11,6 +11,7 @@ using LogicArt.Arch.Application.Validations.Abstractions;
 using LogicArt.Arch.Infrastructure.Persistence.EntityFramework;
 using LogicArt.Identity.Extensions;
 using LogicArt.Identity.Storage;
+using LogicArt.SiteMercado.Application;
 using LogicArt.SiteMercado.Application.Adapters;
 using LogicArt.SiteMercado.Application.Adapters.Abstractions;
 using LogicArt.SiteMercado.Application.Data;
@@ -19,6 +20,7 @@ using LogicArt.SiteMercado.Application.Services;
 using LogicArt.SiteMercado.Application.Validations;
 using LogicArt.SiteMercado.Core.Services.Abstractions;
 using LogicArt.SiteMercado.Domain.Entities;
+using LogicArt.SiteMercado.Infrastructure;
 using LogicArt.SiteMercado.Infrastructure.Persistence;
 using LogicArt.SiteMercado.Infrastructure.Persistence.Repositories;
 using LogicArt.SiteMercado.Presentation.Auth;
@@ -166,6 +168,7 @@ namespace LogicArt.SiteMercado.Presentation
 
             services.AddControllers();
 
+            services.AddSingleton<IImageProcessor, ImageProcessor>();
             services.AddSingleton<IEventSchemaProvider, EventSchemaProvider>();
             services.AddSingleton(serviceProvider => serviceProvider.GetRequiredService<IEventSchemaProvider>().GetSchema());
             services.AddScoped<IEventProvider, EventProvider>();

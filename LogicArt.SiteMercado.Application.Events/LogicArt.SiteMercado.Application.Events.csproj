@@ -7,13 +7,12 @@
   <ItemGroup>
     <PackageReference Include="LogicArt.Arch.Application.Bus" Version="5.0.21060.2346" />
     <PackageReference Include="LogicArt.Arch.Application.Events" Version="5.0.21060.2346" />
-    <PackageReference Include="SixLabors.ImageSharp" Version="1.0.3" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\LogicArt.SiteMercado.Application\LogicArt.SiteMercado.Application.csproj" />
     <ProjectReference Include="..\LogicArt.SiteMercado.Domain.Entities\LogicArt.SiteMercado.Domain.Entities.csproj" />
-    <ProjectReference
-      Include="..\LogicArt.SiteMercado.Application.Services.Abstractions\LogicArt.SiteMercado.Application.Services.Abstractions.csproj" />
+    <ProjectReference Include="..\LogicArt.SiteMercado.Application.Services.Abstractions\LogicArt.SiteMercado.Application.Services.Abstractions.csproj" />
   </ItemGroup>
 
 </Project>
