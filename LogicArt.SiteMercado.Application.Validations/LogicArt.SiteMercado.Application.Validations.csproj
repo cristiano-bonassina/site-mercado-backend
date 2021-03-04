@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="9.5.1" />
+    <PackageReference Include="LogicArt.Arch.Application.Validations" Version="5.0.21060.2346" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LogicArt.SiteMercado.Domain.Entities\LogicArt.SiteMercado.Domain.Entities.csproj" />
+  </ItemGroup>
+
+</Project>

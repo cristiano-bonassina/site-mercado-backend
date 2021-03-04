@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Image.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="LogicArt.Arch.Common.Types" Version="5.0.21060.2346" />
+    <PackageReference Include="LogicArt.Arch.Domain.Entities" Version="5.0.21060.2346" />
+    <PackageReference Include="LogicArt.Identity.Entities" Version="5.0.210612028" />
+    <PackageReference Include="LogicArt.Identity.External" Version="5.0.210612028" />
+  </ItemGroup>
+
+</Project>
