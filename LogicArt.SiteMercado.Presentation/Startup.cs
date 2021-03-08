@@ -25,8 +25,10 @@ using LogicArt.SiteMercado.Infrastructure.Persistence;
 using LogicArt.SiteMercado.Infrastructure.Persistence.Repositories;
 using LogicArt.SiteMercado.Presentation.Auth;
 using LogicArt.SiteMercado.Presentation.Identity;
+using LogicArt.SiteMercado.Presentation.Monitoring;
 using LogicArt.SiteMercado.Presentation.Services;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -67,6 +69,13 @@ namespace LogicArt.SiteMercado.Presentation
             #region Services
 
             services.AddHostedService<DatabaseMigrationService>();
+
+            #endregion
+
+            #region Health
+
+            services.AddHealthChecks()
+                .AddCheck<HealthCheck>("HealthCheck");
 
             #endregion
 
@@ -189,6 +198,7 @@ namespace LogicArt.SiteMercado.Presentation
 
         public void Configure(IApplicationBuilder app, IApiVersionDescriptionProvider provider)
         {
+            app.UseHealthChecks("/health");
             app.UseApiVersioning();
             app.UseSwagger()
                 .UseSwaggerUI(options =>
