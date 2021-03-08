@@ -58,10 +58,10 @@ namespace LogicArt.SiteMercado.Presentation.Controllers
             var unitOfWork = (EntityFrameworkUnitOfWork)this.HttpContext.RequestServices.GetRequiredService<IUnitOfWork>();
             await unitOfWork.Context.SaveChangesAsync();
 
-            var response = new {ResourceId = product.Id, product.Version};
+            var response = new { ResourceId = product.Id, product.Version };
             if (isNewProduct)
             {
-                return this.CreatedAtRoute(new {id = response.ResourceId}, response);
+                return this.CreatedAtRoute(new { id = response.ResourceId }, response);
             }
 
             return this.Ok(response);
@@ -81,20 +81,13 @@ namespace LogicArt.SiteMercado.Presentation.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetProducts([FromQuery] string? name)
+        public async IAsyncEnumerable<ProductDTO> GetProducts([FromQuery] string? name)
         {
-            IEnumerable<Product> products;
-            if (name == null)
+            var products = string.IsNullOrEmpty(name) ? _productService.GetAllAsync() : _productService.GetProductsByNameAsync(name);
+            await foreach (var product in products)
             {
-                products = await _productService.GetAllAsync();
+                yield return _productAdapter.Adapt(product);
             }
-            else
-            {
-                products = await _productService.GetProductsByNameAsync(name);
-            }
-
-            var response = _productAdapter.Adapt(products);
-            return this.Ok(response);
         }
     }
 }

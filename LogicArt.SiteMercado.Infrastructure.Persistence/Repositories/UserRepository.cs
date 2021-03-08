@@ -7,7 +7,7 @@ namespace LogicArt.SiteMercado.Infrastructure.Persistence.Repositories
 {
     public class UserRepository : Repository<User, Guid>, IUserRepository
     {
-        public UserRepository(ArchDbContext context) : base(context)
+        public UserRepository(ApplicationDbContext context) : base(context)
         {
         }
     }

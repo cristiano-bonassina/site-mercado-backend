@@ -11,7 +11,7 @@ namespace LogicArt.SiteMercado.Core.Services.Abstractions
     {
         Task<TEntity> AddAsync(TEntity entity);
 
-        Task<IEnumerable<TEntity>> GetAllAsync();
+        IAsyncEnumerable<TEntity> GetAllAsync();
 
         TEntity FindById(TKey id);
 
