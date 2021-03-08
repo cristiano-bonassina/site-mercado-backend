@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using LogicArt.Arch.Application.Repositories.Abstractions;
 using LogicArt.Arch.Domain.Entities.Abstractions;
 using LogicArt.SiteMercado.Core.Services.Abstractions;
-using Microsoft.EntityFrameworkCore;
 
 namespace LogicArt.SiteMercado.Application.Services
 {
@@ -19,10 +18,10 @@ namespace LogicArt.SiteMercado.Application.Services
 
         public Task<TEntity> AddAsync(TEntity entity) => this.Repository.AddAsync(entity);
 
-        public virtual async Task<IEnumerable<TEntity>> GetAllAsync()
+        public virtual IAsyncEnumerable<TEntity> GetAllAsync()
         {
-            var entities = await this.Repository.Query().ToListAsync();
-            return entities.OrderBy(x => x.ToString());
+            var entities = this.Repository.Query().ToList();
+            return entities.OrderBy(x => x.ToString()).ToAsyncEnumerable();
         }
 
         public TEntity FindById(TKey id) => this.Repository.FindById(id);

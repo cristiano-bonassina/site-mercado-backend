@@ -7,7 +7,7 @@ namespace LogicArt.SiteMercado.Infrastructure.Persistence.Repositories
 {
     public class ProductRepository : Repository<Product, Guid>, IProductRepository
     {
-        public ProductRepository(ArchDbContext context) : base(context)
+        public ProductRepository(ApplicationDbContext context) : base(context)
         {
         }
     }
