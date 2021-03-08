@@ -213,6 +213,7 @@ namespace LogicArt.SiteMercado.Presentation
             app.UseIdentityServer();
             app.UseRouting();
             app.UseAuthorization();
+            app.UseValidationExceptionHandler();
             app.UseEndpoints(endpoints => endpoints.MapControllers());
         }
     }

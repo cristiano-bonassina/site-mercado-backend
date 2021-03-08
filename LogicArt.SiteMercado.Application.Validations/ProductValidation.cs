@@ -8,8 +8,12 @@ namespace LogicArt.SiteMercado.Application.Validations
     {
         public ProductValidation()
         {
-            this.RuleFor(x => x.Image).NotEmpty();
-            this.RuleFor(x => x.Name).NotEmpty();
+            this.RuleFor(x => x.Image)
+                .NotEmpty()
+                .WithMessage("A imagem do produto é obrigatória");
+            this.RuleFor(x => x.Name)
+                .NotEmpty()
+                .WithMessage("O nome do produto é obrigatório");
         }
     }
 }
