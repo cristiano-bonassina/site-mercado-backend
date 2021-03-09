@@ -175,7 +175,8 @@ namespace LogicArt.SiteMercado.Presentation
 
             #endregion
 
-            services.AddControllers();
+            services.AddControllers()
+                .AddNewtonsoftJson();
 
             services.AddSingleton<IImageProcessor, ImageProcessor>();
             services.AddSingleton<IEventSchemaProvider, EventSchemaProvider>();

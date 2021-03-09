@@ -9,6 +9,7 @@ using LogicArt.SiteMercado.Core.Services.Abstractions;
 using LogicArt.SiteMercado.Domain.Entities;
 using LogicArt.SiteMercado.Presentation.Actions;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -46,24 +47,33 @@ namespace LogicArt.SiteMercado.Presentation.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateOrUpdate([FromBody] ProductDTO resource)
+        public async Task<IActionResult> Create([FromBody] ProductDTO resource)
         {
             var product = _productAdapter.Adapt(resource);
-            var isNewProduct = product.IsNew();
-            if (isNewProduct)
-            {
-                await _productService.AddAsync(product);
-            }
+            await _productService.AddAsync(product);
 
             var unitOfWork = (EntityFrameworkUnitOfWork)this.HttpContext.RequestServices.GetRequiredService<IUnitOfWork>();
             await unitOfWork.Context.SaveChangesAsync();
 
             var response = new { ResourceId = product.Id, product.Version };
-            if (isNewProduct)
+            return this.CreatedAtRoute(new { id = response.ResourceId }, response);
+        }
+
+        [HttpPatch("{productId}")]
+        public async Task<IActionResult> Update(Guid productId, [FromBody] JsonPatchDocument<Product> patchResource)
+        {
+            var product = await _productService.FindByIdAsync(productId);
+            if (product == null)
             {
-                return this.CreatedAtRoute(new { id = response.ResourceId }, response);
+                return this.NotFound();
             }
 
+            patchResource.ApplyTo(product);
+
+            var unitOfWork = (EntityFrameworkUnitOfWork)this.HttpContext.RequestServices.GetRequiredService<IUnitOfWork>();
+            await unitOfWork.Context.SaveChangesAsync();
+
+            var response = new { ResourceId = product.Id, product.Version };
             return this.Ok(response);
         }
 
